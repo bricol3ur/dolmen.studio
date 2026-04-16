@@ -98,6 +98,7 @@ if (form) {
     });
     if (response.ok) {
       successMsg.style.display = 'block';
+      form.reset();
     }
   });
 }
