@@ -97,7 +97,6 @@ if (form) {
       headers: { 'Accept': 'application/json' }
     });
     if (response.ok) {
-      form.style.display = 'none';
       successMsg.style.display = 'block';
     }
   });
