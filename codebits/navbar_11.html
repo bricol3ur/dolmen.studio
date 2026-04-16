@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>dolmen.studio — Navbar</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: '#1a2f6e',
+            'navy-dark': '#142158',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Vagues animées ── */
+    .wave-1 {
+      animation: waveDrift1 12s ease-in-out infinite alternate;
+      transform-origin: center bottom;
+    }
+    .wave-2 {
+      animation: waveDrift2 16s ease-in-out infinite alternate;
+      transform-origin: center bottom;
+    }
+    .wave-3 {
+      animation: waveDrift3 10s ease-in-out infinite alternate;
+    }
+    .wave-4 {
+      animation: waveDrift4 14s ease-in-out infinite alternate;
+    }
+
+    @keyframes waveDrift1 {
+      0%   { d: path("M300,480 C400,320 500,200 700,180 C850,165 950,220 1200,150 L1200,480 Z"); }
+      100% { d: path("M280,480 C390,300 510,185 720,170 C870,152 960,210 1200,165 L1200,480 Z"); }
+    }
+    @keyframes waveDrift2 {
+      0%   { d: path("M200,480 C350,300 500,160 750,140 C900,128 1050,180 1200,120 L1200,480 Z"); }
+      100% { d: path("M220,480 C365,315 510,172 760,150 C912,136 1060,192 1200,135 L1200,480 Z"); }
+    }
+    @keyframes waveDrift3 {
+      0%   { opacity: 0.8; transform: translateY(0px); }
+      100% { opacity: 0.95; transform: translateY(-8px); }
+    }
+    @keyframes waveDrift4 {
+      0%   { opacity: 0.25; transform: translateY(0px); }
+      100% { opacity: 0.4;  transform: translateY(-12px); }
+    }
+
+    /* ── Entrée hero ── */
+    .hero-title {
+      animation: fadeUp 0.7s ease both;
+    }
+    .hero-sub {
+      animation: fadeUp 0.7s 0.15s ease both;
+    }
+    .hero-btns {
+      animation: fadeUp 0.7s 0.3s ease both;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Bouton primary — shimmer ── */
+    .btn-primary {
+      transition: background-color 0.25s ease, transform 0.15s ease, box-shadow 0.25s ease;
+    }
+    .btn-primary:hover {
+      background-color: #142158;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(26,47,110,0.35);
+    }
+    .btn-shimmer {
+      position: absolute;
+      top: 0; left: -75%;
+      width: 50%; height: 100%;
+      background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.25) 50%, transparent 70%);
+      transform: skewX(-20deg);
+    }
+    .btn-primary:hover .btn-shimmer {
+      animation: shimmer 0.55s ease forwards;
+    }
+    @keyframes shimmer {
+      from { left: -75%; }
+      to   { left: 130%; }
+    }
+
+    /* ── Bouton outline — simple rollover ── */
+    .btn-outline {
+      transition: background-color 0.25s ease, color 0.25s ease, transform 0.15s ease, box-shadow 0.25s ease;
+    }
+    .btn-fill { display: none; }
+    .btn-outline:hover {
+      background-color: #1a2f6e;
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(26,47,110,0.2);
+    }
+    .btn-outline:hover span.relative {
+      color: white;
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+
+  <!-- NAVBAR -->
+  <header
+    x-data="{ open: false }"
+    class="bg-white shadow-sm sticky top-0 z-50"
+  >
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+
+      <!-- LOGO -->
+      <a href="#" class="flex items-center gap-1.5">
+        <!-- Dolmen icon — asymétrique, aspect ancien, miroir horizontal -->
+        <svg width="29" height="26" viewBox="0 0 36 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform: scaleX(-1);">
+          <!-- Linteau asymétrique — dépasse à gauche, légèrement incliné, bords irréguliers -->
+          <polygon points="0,5 34,7 33,13 1,12" fill="#1a2f6e"/>
+          <!-- Texture / profondeur linteau -->
+          <polygon points="0,5 34,7 34,9 0,7.5" fill="#2b4bbf" opacity="0.45"/>
+          <!-- Fissure décorative -->
+          <line x1="20" y1="7" x2="22" y2="12.5" stroke="#2b4bbf" stroke-width="0.6" opacity="0.4"/>
+          <!-- Pilier gauche — légèrement trapézoïdal, bords bruts -->
+          <polygon points="6,12 12,12.5 11,30 5,30" fill="#1a2f6e"/>
+          <polygon points="6,12 8,12.2 7.5,30 5,30" fill="#2b4bbf" opacity="0.35"/>
+          <!-- Pilier droit — plus étroit, décalé -->
+          <polygon points="22,13 28,12.5 28,30 21,30" fill="#1a2f6e"/>
+          <polygon points="22,13 24,12.8 23.5,30 21,30" fill="#2b4bbf" opacity="0.35"/>
+          <!-- Sol -->
+          <rect x="2" y="29" width="32" height="2.5" rx="1" fill="#1a2f6e" opacity="0.25"/>
+        </svg>
+        <span class="text-[1.1rem] tracking-tight">
+          <span class="font-700 text-navy" style="font-weight:700;">dolmen</span><span class="font-300 text-gray-500" style="font-weight:300;">.studio</span>
+        </span>
+      </a>
+
+      <!-- NAV LINKS — desktop -->
+      <nav class="hidden md:flex items-center gap-8">
+        <a href="#" class="text-sm font-medium text-gray-700 hover:text-navy transition-colors duration-200">Services</a>
+        <a href="#" class="text-sm font-medium text-gray-700 hover:text-navy transition-colors duration-200">Case Studies</a>
+        <a href="#" class="text-sm font-medium text-gray-700 hover:text-navy transition-colors duration-200">About</a>
+        <a href="#" class="text-sm font-medium text-gray-700 hover:text-navy transition-colors duration-200">Contact</a>
+      </nav>
+
+      <!-- CTA — desktop -->
+      <a
+        href="#"
+        class="hidden md:inline-flex items-center bg-navy hover:bg-navy-dark text-white text-sm font-semibold px-5 py-2.5 rounded-md transition-colors duration-200"
+      >
+        Get a Quote
+      </a>
+
+      <!-- HAMBURGER — mobile -->
+      <button
+        @click="open = !open"
+        class="md:hidden flex flex-col justify-center items-center w-8 h-8 gap-1.5 focus:outline-none"
+        aria-label="Toggle menu"
+      >
+        <span :class="open ? 'rotate-45 translate-y-2' : ''" class="block w-5 h-0.5 bg-gray-700 transition-transform duration-300"></span>
+        <span :class="open ? 'opacity-0' : ''" class="block w-5 h-0.5 bg-gray-700 transition-opacity duration-300"></span>
+        <span :class="open ? '-rotate-45 -translate-y-2' : ''" class="block w-5 h-0.5 bg-gray-700 transition-transform duration-300"></span>
+      </button>
+
+    </div>
+
+    <!-- MOBILE MENU -->
+    <div
+      x-show="open"
+      x-transition:enter="transition ease-out duration-200"
+      x-transition:enter-start="opacity-0 -translate-y-2"
+      x-transition:enter-end="opacity-100 translate-y-0"
+      x-transition:leave="transition ease-in duration-150"
+      x-transition:leave-start="opacity-100 translate-y-0"
+      x-transition:leave-end="opacity-0 -translate-y-2"
+      class="md:hidden border-t border-gray-100 bg-white px-6 py-4 flex flex-col gap-4"
+    >
+      <a href="#" class="text-sm font-medium text-gray-700 hover:text-navy transition-colors">Services</a>
+      <a href="#" class="text-sm font-medium text-gray-700 hover:text-navy transition-colors">Case Studies</a>
+      <a href="#" class="text-sm font-medium text-gray-700 hover:text-navy transition-colors">About</a>
+      <a href="#" class="text-sm font-medium text-gray-700 hover:text-navy transition-colors">Contact</a>
+      <a href="#" class="inline-flex justify-center items-center bg-[#1a2f6e] hover:bg-white hover:text-[#1a2f6e] border-2 border-[#1a2f6e] text-white text-sm font-semibold px-5 py-2.5 rounded-md mt-2 transition-all duration-300">
+        Get a Quote
+      </a>
+    </div>
+
+  </header>
+
+  <!-- HERO -->
+  <section class="relative overflow-hidden bg-[#edf1f7] min-h-[480px] flex items-center">
+
+    <!-- SVG vagues animées — fond droit -->
+    <div class="absolute inset-0 z-0">
+      <svg class="absolute inset-0 w-full h-full" viewBox="0 0 1200 480" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <!-- Dégradé fond principal -->
+          <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#edf1f7;stop-opacity:1"/>
+            <stop offset="45%" style="stop-color:#dce6f5;stop-opacity:1"/>
+            <stop offset="100%" style="stop-color:#1a2f6e;stop-opacity:1"/>
+          </linearGradient>
+          <!-- Dégradé vague 1 -->
+          <linearGradient id="wave1Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#c8daf5;stop-opacity:0.7"/>
+            <stop offset="100%" style="stop-color:#2b4bbf;stop-opacity:0.5"/>
+          </linearGradient>
+          <!-- Dégradé vague 2 -->
+          <linearGradient id="wave2Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#e8f0fb;stop-opacity:0.9"/>
+            <stop offset="100%" style="stop-color:#1a2f6e;stop-opacity:0.8"/>
+          </linearGradient>
+          <!-- Dégradé vague lumineuse -->
+          <linearGradient id="wave3Grad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:white;stop-opacity:0"/>
+            <stop offset="50%" style="stop-color:white;stop-opacity:0.6"/>
+            <stop offset="100%" style="stop-color:white;stop-opacity:0"/>
+          </linearGradient>
+          <!-- Masque fondu gauche -->
+          <linearGradient id="maskGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#edf1f7;stop-opacity:1"/>
+            <stop offset="35%" style="stop-color:#edf1f7;stop-opacity:0"/>
+          </linearGradient>
+        </defs>
+
+        <!-- Fond dégradé global -->
+        <rect width="1200" height="480" fill="url(#bgGrad)"/>
+
+        <!-- Vague 1 — large, douce -->
+        <path class="wave-1" d="M300,480 C400,320 500,200 700,180 C850,165 950,220 1200,150 L1200,480 Z" fill="url(#wave1Grad)" opacity="0.6"/>
+
+        <!-- Vague 2 — plus haute, plus lumineuse -->
+        <path class="wave-2" d="M200,480 C350,300 500,160 750,140 C900,128 1050,180 1200,120 L1200,480 Z" fill="url(#wave2Grad)" opacity="0.5"/>
+
+        <!-- Vague 3 — fine ligne lumineuse -->
+        <path class="wave-3" d="M250,480 C380,280 550,130 780,110 C930,96 1080,145 1200,90 L1200,115 C1080,170 930,121 780,135 C550,155 380,305 250,505 Z" fill="url(#wave3Grad)" opacity="0.8"/>
+
+        <!-- Vague 4 — ligne très fine, reflet -->
+        <path class="wave-4" d="M350,480 C480,310 600,170 820,148 C960,134 1090,175 1200,130 L1200,143 C1090,188 960,147 820,161 C600,183 480,323 350,493 Z" fill="white" opacity="0.25"/>
+
+        <!-- Masque fondu côté gauche pour laisser le texte lisible -->
+        <rect width="1200" height="480" fill="url(#maskGrad)"/>
+      </svg>
+    </div>
+
+    <!-- Contenu texte -->
+    <div class="relative z-10 max-w-6xl mx-auto px-6 py-16 md:py-24 w-full">
+      <div class="max-w-lg hero-content">
+
+        <!-- Titre -->
+        <h1 class="text-4xl md:text-5xl lg:text-[3.2rem] leading-tight font-light text-gray-800 mb-4 hero-title">
+          <span class="font-bold text-[#1a2f6e]">Intelligent Solutions</span><br/>
+          for the Digital Age
+        </h1>
+
+        <!-- Sous-titre -->
+        <p class="text-base md:text-lg text-gray-600 mb-8 leading-relaxed hero-sub">
+          AI, Web Design &amp; Automation to transform your business.
+        </p>
+
+        <!-- Boutons -->
+        <div class="flex flex-wrap gap-3 hero-btns">
+          <a href="#" class="btn-primary inline-flex items-center bg-[#1a2f6e] text-white text-sm font-semibold px-6 py-3 rounded-md relative overflow-hidden">
+            <span class="relative z-10">Get Started</span>
+            <span class="btn-shimmer"></span>
+          </a>
+          <a href="#" class="btn-outline inline-flex items-center border-2 border-[#1a2f6e] text-[#1a2f6e] text-sm font-semibold px-6 py-3 rounded-md relative overflow-hidden">
+            <span class="relative z-10">Our Services</span>
+            <span class="btn-fill"></span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+</body>
+</html>

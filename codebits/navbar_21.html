@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>dolmen.studio — Navbar</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: '#1a2f6e',
+            'navy-dark': '#142158',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* canvas neural — animations gérées en JS */
+
+    /* ── Entrée hero ── */
+    .hero-title {
+      animation: fadeUp 0.7s ease both;
+    }
+    .hero-sub {
+      animation: fadeUp 0.7s 0.15s ease both;
+    }
+    .hero-btns {
+      animation: fadeUp 0.7s 0.3s ease both;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Bouton primary — shimmer ── */
+    .btn-primary {
+      transition: background-color 0.25s ease, transform 0.15s ease, box-shadow 0.25s ease;
+    }
+    .btn-primary:hover {
+      background-color: #142158;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(26,47,110,0.35);
+    }
+    .btn-shimmer {
+      position: absolute;
+      top: 0; left: -75%;
+      width: 50%; height: 100%;
+      background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.25) 50%, transparent 70%);
+      transform: skewX(-20deg);
+    }
+    .btn-primary:hover .btn-shimmer {
+      animation: shimmer 0.55s ease forwards;
+    }
+    @keyframes shimmer {
+      from { left: -75%; }
+      to   { left: 130%; }
+    }
+
+    /* ── Bouton outline — simple rollover ── */
+    .btn-outline {
+      transition: background-color 0.25s ease, color 0.25s ease, transform 0.15s ease, box-shadow 0.25s ease;
+    }
+    .btn-fill { display: none; }
+    .btn-outline:hover {
+      background-color: #1a2f6e;
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(26,47,110,0.2);
+    }
+    .btn-outline:hover span.relative {
+      color: white;
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+
+  <!-- NAVBAR -->
+  <header
+    x-data="{ open: false }"
+    class="bg-white shadow-sm sticky top-0 z-50"
+  >
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+
+      <!-- LOGO -->
+      <a href="#" class="flex items-center gap-1.5">
+        <!-- Dolmen icon — asymétrique, aspect ancien, miroir horizontal -->
+        <svg width="29" height="26" viewBox="0 0 36 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform: scaleX(-1);">
+          <!-- Linteau asymétrique — dépasse à gauche, légèrement incliné, bords irréguliers -->
+          <polygon points="0,5 34,7 33,13 1,12" fill="#1a2f6e"/>
+          <!-- Texture / profondeur linteau -->
+          <polygon points="0,5 34,7 34,9 0,7.5" fill="#2b4bbf" opacity="0.45"/>
+          <!-- Fissure décorative -->
+          <line x1="20" y1="7" x2="22" y2="12.5" stroke="#2b4bbf" stroke-width="0.6" opacity="0.4"/>
+          <!-- Pilier gauche — légèrement trapézoïdal, bords bruts -->
+          <polygon points="6,12 12,12.5 11,30 5,30" fill="#1a2f6e"/>
+          <polygon points="6,12 8,12.2 7.5,30 5,30" fill="#2b4bbf" opacity="0.35"/>
+          <!-- Pilier droit — plus étroit, décalé -->
+          <polygon points="22,13 28,12.5 28,30 21,30" fill="#1a2f6e"/>
+          <polygon points="22,13 24,12.8 23.5,30 21,30" fill="#2b4bbf" opacity="0.35"/>
+          <!-- Sol -->
+          <rect x="2" y="29" width="32" height="2.5" rx="1" fill="#1a2f6e" opacity="0.25"/>
+        </svg>
+        <span class="text-[1.1rem] tracking-tight">
+          <span class="font-700 text-navy" style="font-weight:700;">dolmen</span><span class="font-300 text-gray-500" style="font-weight:300;">.studio</span>
+        </span>
+      </a>
+
+      <!-- NAV LINKS — desktop -->
+      <nav class="hidden md:flex items-center gap-8">
+        <a href="#" class="text-sm font-medium text-gray-700 hover:text-navy transition-colors duration-200">Services</a>
+        <a href="#" class="text-sm font-medium text-gray-700 hover:text-navy transition-colors duration-200">Case Studies</a>
+        <a href="#" class="text-sm font-medium text-gray-700 hover:text-navy transition-colors duration-200">About</a>
+        <a href="#" class="text-sm font-medium text-gray-700 hover:text-navy transition-colors duration-200">Contact</a>
+      </nav>
+
+      <!-- CTA — desktop -->
+      <a
+        href="#"
+        class="hidden md:inline-flex items-center bg-[#1a2f6e] hover:bg-white hover:text-[#1a2f6e] border-2 border-[#1a2f6e] text-white text-sm font-semibold px-5 py-2.5 rounded-md transition-all duration-200"
+      >
+        Get a Quote
+      </a>
+
+      <!-- HAMBURGER — mobile -->
+      <button
+        @click="open = !open"
+        class="md:hidden flex flex-col justify-center items-center w-8 h-8 gap-1.5 focus:outline-none"
+        aria-label="Toggle menu"
+      >
+        <span :class="open ? 'rotate-45 translate-y-2' : ''" class="block w-5 h-0.5 bg-gray-700 transition-transform duration-300"></span>
+        <span :class="open ? 'opacity-0' : ''" class="block w-5 h-0.5 bg-gray-700 transition-opacity duration-300"></span>
+        <span :class="open ? '-rotate-45 -translate-y-2' : ''" class="block w-5 h-0.5 bg-gray-700 transition-transform duration-300"></span>
+      </button>
+
+    </div>
+
+    <!-- MOBILE MENU -->
+    <div
+      x-show="open"
+      x-transition:enter="transition ease-out duration-200"
+      x-transition:enter-start="opacity-0 -translate-y-2"
+      x-transition:enter-end="opacity-100 translate-y-0"
+      x-transition:leave="transition ease-in duration-150"
+      x-transition:leave-start="opacity-100 translate-y-0"
+      x-transition:leave-end="opacity-0 -translate-y-2"
+      class="md:hidden border-t border-gray-100 bg-white px-6 py-4 flex flex-col gap-4"
+    >
+      <a href="#" class="text-sm font-medium text-gray-700 hover:text-navy transition-colors">Services</a>
+      <a href="#" class="text-sm font-medium text-gray-700 hover:text-navy transition-colors">Case Studies</a>
+      <a href="#" class="text-sm font-medium text-gray-700 hover:text-navy transition-colors">About</a>
+      <a href="#" class="text-sm font-medium text-gray-700 hover:text-navy transition-colors">Contact</a>
+      <a href="#" class="inline-flex justify-center items-center bg-[#1a2f6e] hover:bg-white hover:text-[#1a2f6e] border-2 border-[#1a2f6e] text-white text-sm font-semibold px-5 py-2.5 rounded-md mt-2 transition-all duration-300">
+        Get a Quote
+      </a>
+    </div>
+
+  </header>
+
+  <!-- HERO -->
+  <section class="relative overflow-hidden bg-[#edf1f7] min-h-[480px] flex items-center">
+
+    <!-- Réseau neuronal animé — cyber / IA tech -->
+    <div class="absolute inset-0 z-0 overflow-hidden" style="background:#ffffff;">
+      <canvas id="neuralCanvas" class="absolute inset-0 w-full h-full"></canvas>
+    </div>
+    <script>
+      (function() {
+        const canvas = document.getElementById('neuralCanvas');
+        const ctx = canvas.getContext('2d');
+        let W, H, nodes, pulses;
+
+        const NODE_COUNT = 38;
+        const CONNECT_DIST = 180;
+        const COLORS = {
+          bg: '#ffffff',
+          node: 'rgba(26,47,110,',
+          line: 'rgba(99,148,220,',
+          pulse: 'rgba(56,189,248,',
+          glow: 'rgba(26,47,110,'
+        };
+
+        function resize() {
+          W = canvas.width  = canvas.offsetWidth;
+          H = canvas.height = canvas.offsetHeight;
+          init();
+        }
+
+        function init() {
+          // Nodes répartis sur la moitié droite + quelques à gauche
+          nodes = Array.from({length: NODE_COUNT}, (_, i) => ({
+            x: i < 8 ? Math.random() * W * 0.35 : W * 0.3 + Math.random() * W * 0.72,
+            y: Math.random() * H,
+            vx: (Math.random() - 0.5) * 0.25,
+            vy: (Math.random() - 0.5) * 0.25,
+            r: Math.random() * 2.2 + 1.2,
+            opacity: Math.random() * 0.5 + 0.25,
+            pulsePhase: Math.random() * Math.PI * 2,
+            pulseSpeed: Math.random() * 0.015 + 0.008,
+            active: Math.random() > 0.65
+          }));
+          pulses = [];
+          // Quelques pulses initiaux
+          for(let i=0;i<5;i++) spawnPulse();
+        }
+
+        function spawnPulse() {
+          // Choisir deux nodes connectés
+          for(let attempt=0; attempt<20; attempt++) {
+            const a = nodes[Math.floor(Math.random()*nodes.length)];
+            const b = nodes[Math.floor(Math.random()*nodes.length)];
+            if(a===b) continue;
+            const dx=b.x-a.x, dy=b.y-a.y;
+            if(Math.sqrt(dx*dx+dy*dy) < CONNECT_DIST) {
+              pulses.push({ ax:a.x, ay:a.y, bx:b.x, by:b.y, t:0, speed: Math.random()*0.008+0.004 });
+              return;
+            }
+          }
+        }
+
+        function draw() {
+          ctx.clearRect(0,0,W,H);
+
+          // Dégradé de fond très léger côté droit
+          const grad = ctx.createLinearGradient(W*0.4, 0, W, H);
+          grad.addColorStop(0,   'rgba(240,246,255,0)');
+          grad.addColorStop(0.5, 'rgba(220,235,255,0.18)');
+          grad.addColorStop(1,   'rgba(190,215,250,0.28)');
+          ctx.fillStyle = grad;
+          ctx.fillRect(0,0,W,H);
+
+          const t = performance.now() * 0.001;
+
+          // Connexions
+          for(let i=0;i<nodes.length;i++) {
+            for(let j=i+1;j<nodes.length;j++) {
+              const a=nodes[i], b=nodes[j];
+              const dx=b.x-a.x, dy=b.y-a.y;
+              const dist=Math.sqrt(dx*dx+dy*dy);
+              if(dist < CONNECT_DIST) {
+                const alpha = (1 - dist/CONNECT_DIST) * 0.18;
+                ctx.beginPath();
+                ctx.moveTo(a.x, a.y);
+                ctx.lineTo(b.x, b.y);
+                ctx.strokeStyle = COLORS.line + alpha + ')';
+                ctx.lineWidth = 0.7;
+                ctx.stroke();
+              }
+            }
+          }
+
+          // Pulses — particules qui voyagent sur les lignes
+          pulses = pulses.filter(p => p.t <= 1);
+          pulses.forEach(p => {
+            p.t += p.speed;
+            const px = p.ax + (p.bx - p.ax) * p.t;
+            const py = p.ay + (p.by - p.ay) * p.t;
+            const fade = Math.sin(p.t * Math.PI);
+            // Traîne
+            ctx.beginPath();
+            ctx.arc(px, py, 2.5, 0, Math.PI*2);
+            ctx.fillStyle = COLORS.pulse + (fade * 0.7) + ')';
+            ctx.fill();
+            // Glow
+            const grd = ctx.createRadialGradient(px,py,0,px,py,8);
+            grd.addColorStop(0, COLORS.pulse + (fade*0.3) + ')');
+            grd.addColorStop(1, 'rgba(56,189,248,0)');
+            ctx.fillStyle = grd;
+            ctx.beginPath();
+            ctx.arc(px,py,8,0,Math.PI*2);
+            ctx.fill();
+          });
+          if(pulses.length < 8 && Math.random() < 0.04) spawnPulse();
+
+          // Nodes
+          nodes.forEach(n => {
+            n.pulsePhase += n.pulseSpeed;
+            const pulse = n.active ? (Math.sin(n.pulsePhase)*0.35+0.65) : 1;
+            const op = n.opacity * pulse;
+
+            // Halo glow
+            if(n.active) {
+              const grd = ctx.createRadialGradient(n.x,n.y,0,n.x,n.y,10);
+              grd.addColorStop(0, COLORS.glow + (op*0.18) + ')');
+              grd.addColorStop(1, 'rgba(26,47,110,0)');
+              ctx.fillStyle = grd;
+              ctx.beginPath();
+              ctx.arc(n.x,n.y,10,0,Math.PI*2);
+              ctx.fill();
+            }
+
+            // Point
+            ctx.beginPath();
+            ctx.arc(n.x, n.y, n.r * pulse, 0, Math.PI*2);
+            ctx.fillStyle = COLORS.node + op + ')';
+            ctx.fill();
+
+            // Mouvement
+            n.x += n.vx; n.y += n.vy;
+            if(n.x<0||n.x>W) n.vx*=-1;
+            if(n.y<0||n.y>H) n.vy*=-1;
+          });
+
+          requestAnimationFrame(draw);
+        }
+
+        window.addEventListener('resize', resize);
+        resize();
+        draw();
+      })();
+    </script>
+
+    <!-- Contenu texte -->
+    <div class="relative z-10 max-w-6xl mx-auto px-6 py-16 md:py-24 w-full">
+      <div class="max-w-lg hero-content">
+
+        <!-- Titre -->
+        <h1 class="text-4xl md:text-5xl lg:text-[3.2rem] leading-tight font-light text-gray-800 mb-4 hero-title">
+          <span class="font-bold text-[#1a2f6e]">Intelligent Solutions</span><br/>
+          for the Digital Age
+        </h1>
+
+        <!-- Sous-titre -->
+        <p class="text-base md:text-lg text-gray-600 mb-8 leading-relaxed hero-sub">
+          AI, Web Design &amp; Automation to transform your business.
+        </p>
+
+        <!-- Boutons -->
+        <div class="flex flex-wrap gap-3 hero-btns">
+          <a href="#" class="btn-primary inline-flex items-center bg-[#1a2f6e] text-white text-sm font-semibold px-6 py-3 rounded-md relative overflow-hidden">
+            <span class="relative z-10">Get Started</span>
+            <span class="btn-shimmer"></span>
+          </a>
+          <a href="#" class="btn-outline inline-flex items-center border-2 border-[#1a2f6e] text-[#1a2f6e] text-sm font-semibold px-6 py-3 rounded-md relative overflow-hidden">
+            <span class="relative z-10">Our Services</span>
+            <span class="btn-fill"></span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+  <!-- CARDS SERVICES -->
+  <section class="bg-white py-16">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+        <!-- Card 1 -->
+        <div class="card-service bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5">
+          <div class="overflow-hidden h-48">
+            <img src="assets/img/cards01.jpg" alt="AI & Machine Learning" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"/>
+          </div>
+          <div class="p-6">
+            <h3 class="text-base font-bold text-[#1a2f6e] mb-2">AI & Machine Learning</h3>
+            <p class="text-sm text-gray-500 leading-relaxed">Custom AI models, data analysis, and automation systems.</p>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card-service bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5">
+          <div class="overflow-hidden h-48">
+            <img src="assets/img/cards02.jpg" alt="Web Design & Development" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"/>
+          </div>
+          <div class="p-6">
+            <h3 class="text-base font-bold text-[#1a2f6e] mb-2">Web Design & Development</h3>
+            <p class="text-sm text-gray-500 leading-relaxed">Modern, responsive websites & applications.</p>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="card-service bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5">
+          <div class="overflow-hidden h-48">
+            <img src="assets/img/cards03.jpg" alt="Automation & Systems" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"/>
+          </div>
+          <div class="p-6">
+            <h3 class="text-base font-bold text-[#1a2f6e] mb-2">Automation & Systems</h3>
+            <p class="text-sm text-gray-500 leading-relaxed">Streamlining processes and integrating your tech stack.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

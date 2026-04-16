@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Dolmen Studio — Sites performants, applications métier sur mesure et conformité accessibilité RGAA. Du devis à la livraison : une question de jours." />
+  <title>Dolmen Studio — Outils digitaux sur mesure</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- RGAA : lien d'évitement -->
+  <a class="skip-link" href="#main">Aller au contenu principal</a>
+
+  <!-- ═══════════════════════════════════════════
+       HEADER / NAV
+  ═══════════════════════════════════════════ -->
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a href="/" class="logo" aria-label="Dolmen Studio — retour à l'accueil">
+        <span class="logo-mark" aria-hidden="true">◆</span>
+        <span class="logo-text">Dolmen<span class="logo-dot">.</span>studio</span>
+      </a>
+
+      <nav aria-label="Navigation principale">
+        <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Ouvrir le menu">
+          <span class="burger" aria-hidden="true"></span>
+        </button>
+        <ul id="nav-menu" class="nav-menu" role="list">
+          <li><a href="#offres">Offres</a></li>
+          <li><a href="#cashping">CashPing</a></li>
+          <li><a href="#realisations">Réalisations</a></li>
+          <li><a href="#methode">Méthode</a></li>
+          <li><a href="#contact" class="nav-cta">Discutons</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════
+       MAIN
+  ═══════════════════════════════════════════ -->
+  <main id="main" tabindex="-1">
+
+    <!-- ① HERO ─────────────────────────────── -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero-inner">
+        <div class="hero-content">
+          <p class="hero-eyebrow">Dolmen Studio</p>
+          <h1 id="hero-title" class="hero-title">
+            On construit les outils digitaux<br />
+            <em>qui font tourner votre business.</em>
+          </h1>
+          <p class="hero-subtitle">
+            Sites performants, applications métier sur mesure, conformité accessibilité RGAA.<br />
+            Du devis à la livraison : <strong>une question de jours, pas de semaines.</strong>
+          </p>
+          <a href="#contact" class="btn btn-primary">
+            Discutons de votre projet
+            <span aria-hidden="true"> →</span>
+          </a>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="hero-shape"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ② CRÉDIBILITÉ ───────────────────────── -->
+    <section class="credibilite" aria-labelledby="cred-title">
+      <div class="container">
+        <h2 id="cred-title" class="sr-only">Chiffres clés</h2>
+        <ul class="stats-grid" role="list">
+          <li class="stat-item">
+            <span class="stat-number">25<span class="stat-unit">ans</span></span>
+            <span class="stat-label">d'expertise front-end</span>
+          </li>
+          <li class="stat-item">
+            <span class="stat-number">100<span class="stat-unit">%</span></span>
+            <span class="stat-label">sur mesure, zéro template</span>
+          </li>
+          <li class="stat-item">
+            <span class="stat-number">RGAA</span>
+            <span class="stat-label">accessibilité certifiée</span>
+          </li>
+          <li class="stat-item">
+            <span class="stat-number">IA<span class="stat-unit">+</span></span>
+            <span class="stat-label">production augmentée</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ③ OFFRES ────────────────────────────── -->
+    <section class="offres" id="offres" aria-labelledby="offres-title">
+      <div class="container">
+        <header class="section-header">
+          <h2 id="offres-title" class="section-title">Ce que je construis pour vous</h2>
+          <p class="section-subtitle">Trois expertises. Un seul objectif : que ça travaille pour vous.</p>
+        </header>
+
+        <ul class="offres-grid" role="list">
+
+          <li class="offre-card">
+            <span class="offre-icon" aria-hidden="true">🌐</span>
+            <h3 class="offre-title">Site pro performant</h3>
+            <p class="offre-desc">
+              Un site qui convertit, charge vite et se positionne sur Google.
+              Conçu pour que vos clients vous trouvent et vous appellent.
+            </p>
+            <p class="offre-cible">Artisans · TPE · PME</p>
+            <a href="#contact" class="btn btn-secondary">En savoir plus</a>
+          </li>
+
+          <li class="offre-card offre-card--featured">
+            <span class="offre-badge">Sur mesure</span>
+            <span class="offre-icon" aria-hidden="true">⚙️</span>
+            <h3 class="offre-title">Application métier</h3>
+            <p class="offre-desc">
+              Votre process automatisé, vos relances gérées, vos clients suivis.
+              Une app pensée pour votre métier, pas pour un marché générique.
+            </p>
+            <p class="offre-cible">PME · Artisans · B2B</p>
+            <a href="#cashping" class="btn btn-primary">Voir un exemple</a>
+          </li>
+
+          <li class="offre-card">
+            <span class="offre-icon" aria-hidden="true">♿</span>
+            <h3 class="offre-title">Audit accessibilité RGAA</h3>
+            <p class="offre-desc">
+              Obligation légale pour les entreprises de +50 salariés.
+              Audit complet, rapport détaillé, corrections incluses.
+            </p>
+            <p class="offre-cible">ETI · Secteur public · B2B</p>
+            <a href="#contact" class="btn btn-secondary">Demander un audit</a>
+          </li>
+
+        </ul>
+      </div>
+    </section>
+
+    <!-- ④ CASHPING ───────────────────────────── -->
+    <section class="cashping-section" id="cashping" aria-labelledby="cashping-title">
+      <div class="container cashping-inner">
+        <div class="cashping-content">
+          <p class="section-eyebrow">Cas concret</p>
+          <h2 id="cashping-title" class="section-title">
+            CashPing — l'assistant terrain des artisans
+          </h2>
+          <p class="cashping-desc">
+            Une application métier conçue pour les plombiers, ramoneurs, chauffagistes.
+            Import de documents, relances automatiques, rappels d'entretien annuel.
+            <strong>Zéro ressaisie. 1 ou 2 clics.</strong>
+          </p>
+          <ul class="cashping-features" role="list">
+            <li>✔ Import intelligent de vos factures existantes</li>
+            <li>✔ Relances de paiement email & SMS préremplies</li>
+            <li>✔ Rappels d'entretien annuel automatiques</li>
+            <li>✔ Tableau de bord "quoi faire maintenant"</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary" aria-label="Être notifié du lancement de CashPing">
+            Je veux tester CashPing
+            <span aria-hidden="true"> →</span>
+          </a>
+        </div>
+        <div class="cashping-visual" aria-hidden="true">
+          <div class="cashping-mockup">
+            <div class="mockup-bar"></div>
+            <div class="mockup-card mockup-card--alert">💸 Relancer — Dupont · 480€</div>
+            <div class="mockup-card mockup-card--todo">📞 Rappeler — Martin · entretien dû</div>
+            <div class="mockup-card mockup-card--ok">✔ Facture réglée — Leblanc</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑤ RÉALISATIONS ──────────────────────── -->
+    <section class="realisations" id="realisations" aria-labelledby="real-title">
+      <div class="container">
+        <header class="section-header">
+          <h2 id="real-title" class="section-title">Réalisations récentes</h2>
+          <p class="section-subtitle">Sites livrés, clients satisfaits.</p>
+        </header>
+
+        <ul class="real-grid" role="list">
+
+          <li class="real-card">
+            <div class="real-img-placeholder" aria-label="Capture du site Alexandra Leroy">
+              <span aria-hidden="true">AL</span>
+            </div>
+            <div class="real-info">
+              <h3 class="real-title">Alexandra Leroy Studio</h3>
+              <p class="real-desc">CMS sur mesure pour artiste. Galerie, gestion de contenu, interface admin dédiée.</p>
+              <a href="https://alexandraleroy.studio" target="_blank" rel="noopener noreferrer" class="real-link">
+                Voir le site
+                <span class="sr-only">(s'ouvre dans un nouvel onglet)</span>
+                <span aria-hidden="true"> ↗</span>
+              </a>
+            </div>
+          </li>
+
+          <li class="real-card">
+            <div class="real-img-placeholder" aria-label="Capture du site Pulse Coaching">
+              <span aria-hidden="true">PC</span>
+            </div>
+            <div class="real-info">
+              <h3 class="real-title">Pulse Coaching</h3>
+              <p class="real-desc">Site vitrine coaching sportif. Performance, conversion, mobile-first.</p>
+              <a href="https://pulsecoaching.fr" target="_blank" rel="noopener noreferrer" class="real-link">
+                Voir le site
+                <span class="sr-only">(s'ouvre dans un nouvel onglet)</span>
+                <span aria-hidden="true"> ↗</span>
+              </a>
+            </div>
+          </li>
+
+          <li class="real-card">
+            <div class="real-img-placeholder" aria-label="Capture du site Qigong du Cygne Blanc">
+              <span aria-hidden="true">QC</span>
+            </div>
+            <div class="real-info">
+              <h3 class="real-title">Qigong du Cygne Blanc</h3>
+              <p class="real-desc">Site bien-être et pratique traditionnelle. Accessibilité soignée, navigation fluide.</p>
+              <a href="https://qigongducygneblanc.fr" target="_blank" rel="noopener noreferrer" class="real-link">
+                Voir le site
+                <span class="sr-only">(s'ouvre dans un nouvel onglet)</span>
+                <span aria-hidden="true"> ↗</span>
+              </a>
+            </div>
+          </li>
+
+        </ul>
+
+        <p class="real-note">
+          <em>Références grandes entreprises disponibles sur demande.</em>
+        </p>
+      </div>
+    </section>
+
+    <!-- ⑥ MÉTHODE ───────────────────────────── -->
+    <section class="methode" id="methode" aria-labelledby="methode-title">
+      <div class="container">
+        <header class="section-header">
+          <h2 id="methode-title" class="section-title">Comment je travaille</h2>
+          <p class="section-subtitle">Simple. Rapide. Sans surprise.</p>
+        </header>
+
+        <ol class="methode-steps" role="list">
+          <li class="methode-step">
+            <span class="step-number" aria-hidden="true">01</span>
+            <div class="step-content">
+              <h3 class="step-title">On cadre votre besoin</h3>
+              <p class="step-desc">Un échange de 30 minutes. Je comprends votre métier, vos contraintes, vos objectifs. Le devis suit dans la journée.</p>
+            </div>
+          </li>
+          <li class="methode-step">
+            <span class="step-number" aria-hidden="true">02</span>
+            <div class="step-content">
+              <h3 class="step-title">Je construis vite</h3>
+              <p class="step-desc">Production augmentée par l'IA. Pas de semaines d'attente. Vous voyez tourner quelque chose en quelques jours.</p>
+            </div>
+          </li>
+          <li class="methode-step">
+            <span class="step-number" aria-hidden="true">03</span>
+            <div class="step-content">
+              <h3 class="step-title">Vous validez</h3>
+              <p class="step-desc">Retours intégrés rapidement. On affine ensemble jusqu'à ce que ce soit parfait.</p>
+            </div>
+          </li>
+          <li class="methode-step">
+            <span class="step-number" aria-hidden="true">04</span>
+            <div class="step-content">
+              <h3 class="step-title">Livraison & suivi</h3>
+              <p class="step-desc">Mise en ligne soignée. Je reste disponible. Pas de disparition après livraison.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ⑦ CONTACT ───────────────────────────── -->
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+      <div class="container contact-inner">
+        <header class="section-header">
+          <h2 id="contact-title" class="section-title">Discutons de votre projet</h2>
+          <p class="section-subtitle">Je réponds sous 24h.</p>
+        </header>
+
+        <form class="contact-form" action="https://formspree.io/f/XXXXXXXX" method="POST" novalidate aria-label="Formulaire de contact">
+          <div class="form-group">
+            <label for="name">Votre nom <span aria-hidden="true">*</span><span class="sr-only">(obligatoire)</span></label>
+            <input type="text" id="name" name="name" required autocomplete="name" placeholder="Jean Dupont" />
+          </div>
+          <div class="form-group">
+            <label for="email">Votre email <span aria-hidden="true">*</span><span class="sr-only">(obligatoire)</span></label>
+            <input type="email" id="email" name="email" required autocomplete="email" placeholder="jean@monentreprise.fr" />
+          </div>
+          <div class="form-group">
+            <label for="sujet">Sujet</label>
+            <select id="sujet" name="sujet" autocomplete="off">
+              <option value="">— Choisir —</option>
+              <option value="site">Site pro performant</option>
+              <option value="app">Application métier</option>
+              <option value="rgaa">Audit accessibilité RGAA</option>
+              <option value="cashping">Tester CashPing</option>
+              <option value="autre">Autre</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Votre message <span aria-hidden="true">*</span><span class="sr-only">(obligatoire)</span></label>
+            <textarea id="message" name="message" required rows="5" placeholder="Décrivez votre projet en quelques lignes…"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-full">
+            Envoyer le message
+            <span aria-hidden="true"> →</span>
+          </button>
+          <p class="form-note">Pas de spam. Vos données ne sont pas revendues.</p>
+        </form>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════ -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <p class="footer-logo">
+        <span aria-hidden="true">◆</span> Dolmen<span class="logo-dot">.</span>studio
+      </p>
+      <p class="footer-copy">© <span id="year"></span> Dolmen Studio — Tous droits réservés</p>
+      <nav aria-label="Navigation secondaire">
+        <ul class="footer-nav" role="list">
+          <li><a href="mentions-legales.html">Mentions légales</a></li>
+          <li><a href="mailto:votre@gmail.com">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
