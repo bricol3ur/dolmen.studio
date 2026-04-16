@@ -82,3 +82,23 @@ if (sections.length && navLinks.length) {
 
   sections.forEach(s => sectionObserver.observe(s));
 }
+
+/* ── CONTACT FORM ──────────────────────────────── */
+const form       = document.getElementById('contact-form');
+const successMsg = document.getElementById('form-success');
+
+if (form) {
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    const response = await fetch(form.action, {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    });
+    if (response.ok) {
+      form.style.display = 'none';
+      successMsg.style.display = 'block';
+    }
+  });
+}

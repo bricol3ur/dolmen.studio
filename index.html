@@ -293,7 +293,7 @@
           <p class="section-subtitle">Je réponds sous 24h.</p>
         </header>
 
-        <form class="contact-form" action="https://formspree.io/f/xeoqgokj" method="POST" novalidate aria-label="Formulaire de contact">
+        <form id="contact-form" class="contact-form" action="https://formspree.io/f/xeoqgokj" method="POST" novalidate aria-label="Formulaire de contact">
           <div class="form-group">
             <label for="name">Votre nom <span aria-hidden="true">*</span><span class="sr-only">(obligatoire)</span></label>
             <input type="text" id="name" name="name" required autocomplete="name" placeholder="Jean Dupont" />
@@ -323,6 +323,7 @@
           </button>
           <p class="form-note">Pas de spam. Vos données ne sont pas revendues.</p>
         </form>
+        <div id="form-success" style="display:none" role="alert">Merci ! Votre message a bien été envoyé. Je vous réponds sous 24h.</div>
 
       </div>
     </section>
