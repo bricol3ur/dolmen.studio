@@ -85,20 +85,38 @@ if (sections.length && navLinks.length) {
 
 /* ── CONTACT FORM ──────────────────────────────── */
 const form       = document.getElementById('contact-form');
+const csrfInput  = document.getElementById('csrf_token');
 const successMsg = document.getElementById('form-success');
 
-if (form) {
+if (form && csrfInput) {
+  // Récupère le token CSRF dès le chargement
+  fetch('contact.php', { method: 'GET' })
+    .then(r => r.json())
+    .then(data => { csrfInput.value = data.csrf_token || ''; })
+    .catch(() => {});
+
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const data = new FormData(form);
-    const response = await fetch(form.action, {
-      method: 'POST',
-      body: data,
-      headers: { 'Accept': 'application/json' }
-    });
-    if (response.ok) {
-      successMsg.style.display = 'block';
-      form.reset();
+    try {
+      const response = await fetch('contact.php', {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+      const json = await response.json();
+      if (response.ok && json.success) {
+        successMsg.style.display = 'block';
+        form.reset();
+        // Renouvelle le token après envoi réussi
+        fetch('contact.php', { method: 'GET' })
+          .then(r => r.json())
+          .then(d => { csrfInput.value = d.csrf_token || ''; });
+      } else {
+        alert(json.message || 'Erreur. Veuillez réessayer.');
+      }
+    } catch {
+      alert('Erreur réseau. Veuillez réessayer.');
     }
   });
 }
