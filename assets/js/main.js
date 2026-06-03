@@ -102,7 +102,10 @@ if (form && csrfInput) {
       const response = await fetch('contact.php', {
         method: 'POST',
         body: data,
-        headers: { 'Accept': 'application/json' }
+        headers: {
+          'Accept': 'application/json',
+          'X-Requested-With': 'XMLHttpRequest'
+        }
       });
       const json = await response.json();
       if (response.ok && json.success) {
