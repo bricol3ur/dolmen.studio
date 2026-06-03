@@ -24,25 +24,32 @@ There are no tests, no linters, and no CI configuration.
 | File | Role |
 |---|---|
 | `index.html` | Single-page site — all sections live here |
-| `style.css` | All styles, including responsive breakpoints |
-| `main.js` | Vanilla JS: footer year, burger nav, scroll animations, active nav highlighting |
+| `assets/css/style.css` | All styles, including responsive breakpoints |
+| `assets/js/main.js` | Vanilla JS: footer year, burger nav, scroll animations, active nav highlighting |
 | `assets/img/` | Image assets |
+| `includes/` | Server-side partials (PHP includes) |
+| `contact.php` | Contact form handler — PHPMailer SMTP o2switch |
+| `mentions-legales.html` | Legal notices page |
 | `codebits/` | Standalone HTML prototypes / component explorations (not linked from the main site) |
 
 ## Architecture
 
 The site is a single HTML document with seven sections in order: Hero → Crédibilité (stats bar) → Offres → CashPing (product feature) → Réalisations → Méthode → Contact.
 
-**CSS design tokens** (`style.css:14–34`): all colours, fonts, radii and spacing are defined as CSS custom properties on `:root`. Always use these variables — never hardcode values.
+**CSS design tokens** (`assets/css/style.css:14–34`): all colours, fonts, radii and spacing are defined as CSS custom properties on `:root`. Always use these variables — never hardcode values.
 
 - Palette: `--bg` (#F2EFE9) / `--accent` (#2A5C4E) / `--text` (#1A1A1A) / `--surface` (#FFF)
 - Type: `--ff-title` (Fraunces, serif) for headings, `--ff-body` (DM Sans) for everything else
 
 **Responsive strategy**: desktop-first with two breakpoints — `900px` (tablet, collapses grids) and `600px` (mobile, activates burger nav via `.nav-toggle` + `.is-open`).
 
-**Scroll animations**: `main.js` adds `.fade-in` to cards/steps at runtime, then an `IntersectionObserver` adds `.visible` on entry. The CSS class is never present in the HTML source. Respects `prefers-reduced-motion`.
+**Scroll animations**: `assets/js/main.js` adds `.fade-in` to cards/steps at runtime, then an `IntersectionObserver` adds `.visible` on entry. The CSS class is never present in the HTML source. Respects `prefers-reduced-motion`.
 
-**Contact form**: posts to Formspree (`action="https://formspree.io/f/XXXXXXXX"`). The placeholder `XXXXXXXX` must be replaced with the real Formspree endpoint ID before going live.
+**Contact form**: `contact.php` via PHPMailer SMTP o2switch — email : contact@dolmen.studio
+
+## Hosting
+
+o2switch — `/home/waqo3809/dolmen.studio/`
 
 ## Accessibility (RGAA)
 
