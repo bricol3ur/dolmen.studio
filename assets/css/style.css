@@ -404,7 +404,7 @@ section { padding-block: clamp(4rem, 8vw, 7rem); }
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
-  align-items: start;
+  align-items: stretch;
 }
 
 .offre-card {
